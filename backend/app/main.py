@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.auth import router as auth_router
-from app.core.config import settings
-from app.core.logging import log_requests, setup_logging
+from .api.auth import router as auth_router
+from .core.config import settings
+from .core.logging import log_requests, setup_logging
 
 setup_logging()
 app = FastAPI(title="Startup Backend")

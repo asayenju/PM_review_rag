@@ -1,8 +1,8 @@
 import httpx
 from fastapi import HTTPException, status
 
-from app.core.config import settings
-from app.schemas.auth import AuthResponse
+from ..core.config import settings
+from ..schemas.auth import AuthResponse
 
 
 def _map_auth_response(payload: dict) -> AuthResponse:

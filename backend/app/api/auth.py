@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from app.schemas.auth import AuthResponse, LoginRequest, SignUpRequest
-from app.services.supabase_auth import login, sign_up
+from ..schemas.auth import AuthResponse, LoginRequest, SignUpRequest
+from ..services.supabase_auth import login, sign_up
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
