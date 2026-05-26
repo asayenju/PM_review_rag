@@ -3,12 +3,22 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev -p 3000",
+    "predev": "node -e \"const m=Number(process.versions.node.split('.')[0]); if(m<18||m>22){console.error('Unsupported Node version for this Next.js app: '+process.version+'. Use Node 20 LTS (recommended) or 22.'); process.exit(1);}\"",
+    "dev": "rm -rf .next && next build && next start -p 3000 -H 127.0.0.1",
+    "dev:hot": "rm -rf .next && next dev -p 3000 -H 127.0.0.1",
+    "dev:stable": "rm -rf .next && next build && next start -p 3000 -H 127.0.0.1",
     "build": "next build",
     "start": "next start -p 3000"
   },
+  "engines": {
+    "node": ">=18 <23"
+  },
   "dependencies": {
-    "next": "14.2.5",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.4",
+    "@mui/material": "^6.1.4",
+    "next": "^14.2.33",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   }
