@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "predev": "node -e \"const m=Number(process.versions.node.split('.')[0]); if(m<18||m>22){console.error('Unsupported Node version for this Next.js app: '+process.version+'. Use Node 20 LTS (recommended) or 22.'); process.exit(1);}\"",
-    "dev": "rm -rf .next && next dev -p 3000 -H 127.0.0.1",
+    "dev": "rm -rf .next && next build && next start -p 3000 -H 127.0.0.1",
+    "dev:hot": "rm -rf .next && next dev -p 3000 -H 127.0.0.1",
     "dev:stable": "rm -rf .next && next build && next start -p 3000 -H 127.0.0.1",
     "build": "next build",
     "start": "next start -p 3000"
