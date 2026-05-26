@@ -8,7 +8,7 @@ router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 @router.post("/signup", response_model=AuthResponse)
 async def signup_endpoint(payload: SignUpRequest):
-    return await sign_up(payload.email, payload.password)
+    return await sign_up(payload.display_name, payload.email, payload.password)
 
 
 @router.post("/login", response_model=AuthResponse)

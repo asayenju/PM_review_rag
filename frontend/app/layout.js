@@ -1,12 +1,17 @@
+import './globals.css';
+import AppThemeProvider from '../components/AppThemeProvider';
+
 export const metadata = {
-  title: 'Startup Frontend',
-  description: 'Next.js frontend'
+  title: 'PM RAG Studio',
+  description: 'Product intelligence workspace'
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, fontFamily: 'Arial, sans-serif' }}>{children}</body>
+      <body>
+        <AppThemeProvider>{children}</AppThemeProvider>
+      </body>
     </html>
   );
 }
