@@ -86,3 +86,17 @@ async def login(email: str, password: str) -> AuthResponse:
         raise HTTPException(status_code=response.status_code, detail=detail)
 
     return _map_auth_response(response.json())
+
+
+async def get_user_from_access_token(access_token: str) -> dict:
+    url = f"{settings.supabase_url}/auth/v1/user"
+    headers = {
+        "apikey": settings.supabase_anon_key,
+        "Authorization": f"Bearer {access_token}",
+    }
+    async with httpx.AsyncClient(timeout=15) as client:
+        response = await client.get(url, headers=headers)
+    if response.status_code >= 400:
+        detail = response.json().get("msg", response.text)
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Invalid token: {detail}")
+    return response.json()

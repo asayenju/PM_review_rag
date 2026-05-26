@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .api.auth import router as auth_router
+from .api.reviews import router as reviews_router
 from .core.config import settings
 from .core.logging import log_requests, setup_logging
 
@@ -28,3 +29,4 @@ def health():
 
 
 app.include_router(auth_router)
+app.include_router(reviews_router)
