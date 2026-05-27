@@ -23,3 +23,7 @@ export async function login(email, password) {
 export async function signup(display_name, email, password) {
   return request('/api/auth/signup', { display_name, email, password });
 }
+
+export async function publicQuery(question) {
+  return request('/api/public/query', { question });
+}
