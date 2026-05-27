@@ -77,7 +77,7 @@ def test_answer_feature_question_generates_answer_from_scoped_context(monkeypatc
             {"chunk_text": "mobile cart resets across sessions", "similarity": 0.74},
         ]
 
-    async def fake_answer_from_review_context(question, context):
+    async def fake_answer_from_review_context(question, context, history=""):
         assert question == "What should we improve?"
         assert "checkout coupon application confusing" in context
         assert "mobile cart resets across sessions" in context
@@ -169,7 +169,7 @@ def test_answer_feature_question_uses_rating_lookup_without_embedding(monkeypatc
     async def fail_embed_texts(_texts):
         raise AssertionError("embedding should not run for rating questions")
 
-    async def fake_answer_from_review_context(question, context):
+    async def fake_answer_from_review_context(question, context, history=""):
         assert "Title: Buggy Checkout" in context
         assert "Rating: 2/10" in context
         return "The worst review is Buggy Checkout with a 2/10."

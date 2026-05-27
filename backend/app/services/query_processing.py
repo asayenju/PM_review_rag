@@ -21,7 +21,13 @@ def _user_profile_id(user: dict) -> str | None:
     return user.get("id")
 
 
-async def answer_feature_question(org_id: str, feature_id: str, question: str, user: dict) -> str:
+async def generate_feature_answer(
+    org_id: str,
+    feature_id: str,
+    question: str,
+    user: dict,
+    history: str = "",
+) -> dict:
     profile_id = _user_profile_id(user)
     if not profile_id:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Authenticated user is missing an id")
@@ -32,7 +38,7 @@ async def answer_feature_question(org_id: str, feature_id: str, question: str, u
 
     query_intent = classify_query(question)
     if query_intent == OUT_OF_SCOPE:
-        return OUT_OF_SCOPE_ANSWER
+        return {"answer": OUT_OF_SCOPE_ANSWER, "retrieved_chunk_ids": []}
 
     if query_intent == REVIEW_RATING:
         reviews = await list_reviews_for_feature(
@@ -43,8 +49,9 @@ async def answer_feature_question(org_id: str, feature_id: str, question: str, u
         )
         context = build_review_context(reviews)
         if not context:
-            return _NO_EVIDENCE_ANSWER
-        return await answer_from_review_context(question=question, context=context)
+            return {"answer": _NO_EVIDENCE_ANSWER, "retrieved_chunk_ids": []}
+        answer = await answer_from_review_context(question=question, context=context, history=history)
+        return {"answer": answer, "retrieved_chunk_ids": []}
 
     query_embedding = (await embed_texts([question]))[0]
     matches = await match_review_chunks(
@@ -60,6 +67,15 @@ async def answer_feature_question(org_id: str, feature_id: str, question: str, u
     ]
     context = build_chunk_context(strong_matches)
     if not context:
-        return _NO_EVIDENCE_ANSWER
+        return {"answer": _NO_EVIDENCE_ANSWER, "retrieved_chunk_ids": []}
 
-    return await answer_from_review_context(question=question, context=context)
+    answer = await answer_from_review_context(question=question, context=context, history=history)
+    return {
+        "answer": answer,
+        "retrieved_chunk_ids": [match["chunk_id"] for match in strong_matches if match.get("chunk_id")],
+    }
+
+
+async def answer_feature_question(org_id: str, feature_id: str, question: str, user: dict) -> str:
+    result = await generate_feature_answer(org_id=org_id, feature_id=feature_id, question=question, user=user)
+    return result["answer"]

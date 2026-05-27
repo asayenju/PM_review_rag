@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     query_scan_limit: int = 200
     query_min_similarity: float = 0.25
     query_max_context_chars: int = 3000
+    query_max_history_chars: int = 2000
     query_max_question_chars: int = 1000
     query_max_output_tokens: int = 180
     chunk_size_chars: int = 900

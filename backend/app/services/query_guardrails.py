@@ -25,6 +25,9 @@ _REVIEW_PATTERNS = [
     r"\bcustomers?\b",
     r"\busers?\b",
     r"\bfeedback\b",
+    r"\bfeatures?\b",
+    r"\bproducts?\b",
+    r"\bexperience\b",
     r"\bcomplain(?:t|ts|ing)?\b",
     r"\bpain points?\b",
     r"\bissues?\b",
@@ -38,6 +41,16 @@ _REVIEW_PATTERNS = [
     r"\bpositive\b",
     r"\bnegative\b",
     r"\bsentiment\b",
+    r"\boverview\b",
+    r"\boverall\b",
+    r"\bgeneral\b",
+    r"\bhigh[-\s]?level\b",
+    r"\brecap\b",
+    r"\btakeaways?\b",
+    r"\binsights?\b",
+    r"\btrends?\b",
+    r"\bfeel(?:ing|s)?\b",
+    r"\bsaying\b",
     r"\bsummar(?:y|ize|ise)\b",
     r"\btheme(?:s)?\b",
     r"\bcheckout\b",
@@ -55,6 +68,26 @@ _ASC_RATING_PATTERNS = [
     r"\blow[-\s]?rated\b",
 ]
 
+_OUT_OF_SCOPE_PATTERNS = [
+    r"\bweather\b",
+    r"\bforecast\b",
+    r"\btemperature\b",
+    r"\brain(?:ing)?\b",
+    r"\bsnow(?:ing)?\b",
+    r"\bcapital of\b",
+    r"\bpoems?\b",
+    r"\bjokes?\b",
+    r"\bmovies?\b",
+    r"\bstocks?\b",
+    r"\bcrypto\b",
+    r"\bbitcoin\b",
+    r"\bsports?\b",
+    r"\bscores?\b",
+    r"\brecipes?\b",
+    r"\bflights?\b",
+    r"\bhotels?\b",
+]
+
 
 def _matches_any(patterns: list[str], normalized: str) -> bool:
     return any(re.search(pattern, normalized) for pattern in patterns)
@@ -64,11 +97,13 @@ def classify_query(question: str) -> str:
     normalized = " ".join(question.lower().split())
     if not normalized:
         return OUT_OF_SCOPE
-    if _matches_any(_RATING_PATTERNS, normalized) and _matches_any(_REVIEW_PATTERNS, normalized):
+    if _matches_any(_OUT_OF_SCOPE_PATTERNS, normalized):
+        return OUT_OF_SCOPE
+    if _matches_any(_RATING_PATTERNS, normalized):
         return REVIEW_RATING
     if _matches_any(_REVIEW_PATTERNS, normalized):
         return REVIEW_FEEDBACK
-    return OUT_OF_SCOPE
+    return REVIEW_FEEDBACK
 
 
 def is_review_question(question: str) -> bool:

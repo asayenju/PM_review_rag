@@ -21,3 +21,11 @@ def test_build_answer_input_only_contains_question_and_review_context():
     assert "Review context:\n- checkout coupon errors" in payload
     assert "embedding" not in payload.lower()
     assert "[" not in payload
+
+
+def test_build_answer_input_includes_bounded_history():
+    payload = build_answer_input("Follow up?", "- checkout issue", "PM: Earlier question\nAssistant: Earlier answer")
+
+    assert "Conversation history:\nPM: Earlier question\nAssistant: Earlier answer" in payload
+    assert "Question:\nFollow up?" in payload
+    assert "Review context:\n- checkout issue" in payload

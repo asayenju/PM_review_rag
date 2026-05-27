@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import AuthCard from '../../components/AuthCard';
-import { login } from '../../lib/api';
+import { login, saveAuthSession } from '../../lib/api';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,7 +24,9 @@ export default function LoginPage() {
 
     try {
       const data = await login(form.email, form.password);
+      saveAuthSession(data);
       setSuccess(`Welcome back ${data.email || 'user'}. Login successful.`);
+      router.push('/chat');
     } catch (err) {
       setError(err.message);
     } finally {
