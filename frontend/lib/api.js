@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://127.0.0.1:4000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://pm-review-rag.onrender.com';
 
 export function getAuthToken() {
   if (typeof window === 'undefined') {
@@ -60,6 +60,19 @@ export async function signup(display_name, email, password) {
 
 export async function publicQuery(question) {
   return request('/api/public/query', { question });
+}
+
+export async function pingHealth() {
+  const response = await fetch(`${API_BASE_URL}/health`, {
+    method: 'GET',
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    throw new Error('Backend health check failed.');
+  }
+
+  return response.json().catch(() => ({}));
 }
 
 export async function getAssignedFeatures() {
