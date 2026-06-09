@@ -141,15 +141,16 @@ This gives observability and retry-friendly behavior.
 
 ## 5) Chunking Strategy
 
-Current chunker is simple and deterministic:
+Current chunker uses LangChain's `RecursiveCharacterTextSplitter`:
 - Normalizes whitespace
-- Splits by fixed character length (`CHUNK_SIZE_CHARS`)
+- Splits recursively with `CHUNK_SIZE_CHARS`
 - Uses overlap (`CHUNK_OVERLAP_CHARS`) to reduce boundary loss
+- Preserves natural-language review text in stored chunks
 
 Why this is useful for v1:
 - Easy to reason about
 - Stable outputs for testing
-- No tokenizer dependency required initially
+- Keeps more complete evidence available for generation
 
 ## 6) Vector Storage Details
 

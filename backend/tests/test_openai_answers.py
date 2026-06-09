@@ -4,9 +4,9 @@ from app.services.openai_answers import build_answer_input
 
 def test_build_answer_input_clamps_question_and_context():
     question = "q" * (settings.query_max_question_chars + 50)
-    context = "c" * (settings.query_max_context_chars + 50)
+    chunks = ["c" * (settings.query_max_context_chars + 50)]
 
-    payload = build_answer_input(question, context)
+    payload = build_answer_input(question, chunks)
 
     assert "q" * settings.query_max_question_chars in payload
     assert "q" * (settings.query_max_question_chars + 1) not in payload
@@ -14,18 +14,18 @@ def test_build_answer_input_clamps_question_and_context():
     assert "c" * (settings.query_max_context_chars + 1) not in payload
 
 
-def test_build_answer_input_only_contains_question_and_review_context():
-    payload = build_answer_input("What changed?", "- checkout coupon errors")
+def test_build_answer_input_formats_review_context_as_sources():
+    payload = build_answer_input("What changed?", ["- checkout coupon errors", "- mobile cart resets"])
 
     assert "Question:\nWhat changed?" in payload
-    assert "Review context:\n- checkout coupon errors" in payload
+    assert "Review context:\n[Source 1]\n- checkout coupon errors" in payload
+    assert "[Source 2]\n- mobile cart resets" in payload
     assert "embedding" not in payload.lower()
-    assert "[" not in payload
 
 
 def test_build_answer_input_includes_bounded_history():
-    payload = build_answer_input("Follow up?", "- checkout issue", "PM: Earlier question\nAssistant: Earlier answer")
+    payload = build_answer_input("Follow up?", ["- checkout issue"], "PM: Earlier question\nAssistant: Earlier answer")
 
     assert "Conversation history:\nPM: Earlier question\nAssistant: Earlier answer" in payload
     assert "Question:\nFollow up?" in payload
-    assert "Review context:\n- checkout issue" in payload
+    assert "Review context:\n[Source 1]\n- checkout issue" in payload

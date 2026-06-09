@@ -19,8 +19,8 @@ def _review_label(review: dict) -> str:
     return " | ".join(parts)
 
 
-def build_chunk_context(matches: list[dict]) -> str:
-    lines = []
+def build_chunk_context(matches: list[dict]) -> list[str]:
+    chunks = []
     remaining_chars = settings.query_max_context_chars
     for match in matches:
         chunk_text = (match.get("chunk_text") or "").strip()
@@ -31,15 +31,15 @@ def build_chunk_context(matches: list[dict]) -> str:
         if len(line) > remaining_chars:
             line = line[:remaining_chars].strip()
         if line:
-            lines.append(line)
+            chunks.append(line)
             remaining_chars -= len(line)
         if remaining_chars <= 0:
             break
-    return "\n".join(lines)
+    return chunks
 
 
-def build_review_context(reviews: list[dict]) -> str:
-    lines = []
+def build_review_context(reviews: list[dict]) -> list[str]:
+    chunks = []
     remaining_chars = settings.query_max_context_chars
     for review in reviews:
         body = (review.get("body") or "").strip()
@@ -48,8 +48,8 @@ def build_review_context(reviews: list[dict]) -> str:
         if len(line) > remaining_chars:
             line = line[:remaining_chars].strip()
         if line:
-            lines.append(line)
+            chunks.append(line)
             remaining_chars -= len(line)
         if remaining_chars <= 0:
             break
-    return "\n".join(lines)
+    return chunks

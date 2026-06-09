@@ -104,10 +104,10 @@ async def answer_public_review_question(question: str) -> str:
             limit=settings.query_match_count,
             rating_direction=rating_sort_direction(question),
         )
-        context = build_review_context(reviews)
-        if not context:
+        chunks = build_review_context(reviews)
+        if not chunks:
             return _NO_EVIDENCE_ANSWER
-        return await answer_from_review_context(question=question, context=context)
+        return await answer_from_review_context(question=question, chunks=chunks)
 
     query_embedding = (await embed_texts([question]))[0]
     matches = await match_review_chunks(
@@ -121,8 +121,8 @@ async def answer_public_review_question(question: str) -> str:
         for match in matches
         if float(match.get("similarity") or 0) >= settings.query_min_similarity
     ]
-    context = build_chunk_context(strong_matches)
-    if not context:
+    chunks = build_chunk_context(strong_matches)
+    if not chunks:
         return _NO_EVIDENCE_ANSWER
 
-    return await answer_from_review_context(question=question, context=context)
+    return await answer_from_review_context(question=question, chunks=chunks)

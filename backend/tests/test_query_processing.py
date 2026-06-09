@@ -44,7 +44,7 @@ def test_answer_feature_question_returns_no_evidence_for_weak_matches(monkeypatc
         assert query_embedding == [0.1, 0.2, 0.3]
         return [{"chunk_text": "checkout coupon confusion", "similarity": 0.1}]
 
-    async def fail_answer_from_review_context(question, context):
+    async def fail_answer_from_review_context(question, chunks):
         raise AssertionError("answer generation should not run without strong evidence")
 
     monkeypatch.setattr(query_processing, "has_feature_assignment", fake_has_feature_assignment)
@@ -77,10 +77,11 @@ def test_answer_feature_question_generates_answer_from_scoped_context(monkeypatc
             {"chunk_text": "mobile cart resets across sessions", "similarity": 0.74},
         ]
 
-    async def fake_answer_from_review_context(question, context, history=""):
+    async def fake_answer_from_review_context(question, chunks, history=""):
         assert question == "What should we improve?"
-        assert "checkout coupon application confusing" in context
-        assert "mobile cart resets across sessions" in context
+        assert isinstance(chunks, list)
+        assert any("checkout coupon application confusing" in chunk for chunk in chunks)
+        assert any("mobile cart resets across sessions" in chunk for chunk in chunks)
         return "Users want clearer coupon handling and persistent mobile carts."
 
     monkeypatch.setattr(query_processing, "has_feature_assignment", fake_has_feature_assignment)
@@ -169,9 +170,10 @@ def test_answer_feature_question_uses_rating_lookup_without_embedding(monkeypatc
     async def fail_embed_texts(_texts):
         raise AssertionError("embedding should not run for rating questions")
 
-    async def fake_answer_from_review_context(question, context, history=""):
-        assert "Title: Buggy Checkout" in context
-        assert "Rating: 2/10" in context
+    async def fake_answer_from_review_context(question, chunks, history=""):
+        assert isinstance(chunks, list)
+        assert any("Title: Buggy Checkout" in chunk for chunk in chunks)
+        assert any("Rating: 2/10" in chunk for chunk in chunks)
         return "The worst review is Buggy Checkout with a 2/10."
 
     monkeypatch.setattr(query_processing, "has_feature_assignment", fake_has_feature_assignment)

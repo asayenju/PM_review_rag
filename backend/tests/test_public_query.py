@@ -17,9 +17,10 @@ def test_answer_public_review_question_uses_backend_public_scope(monkeypatch):
         assert query_embedding == [0.4, 0.5, 0.6]
         return [{"chunk_text": "coupon errors confuse customers", "similarity": 0.8}]
 
-    async def fake_answer_from_review_context(question, context):
+    async def fake_answer_from_review_context(question, chunks):
         assert question == "What should we improve?"
-        assert "coupon errors confuse customers" in context
+        assert isinstance(chunks, list)
+        assert any("coupon errors confuse customers" in chunk for chunk in chunks)
         return "Customers want clearer coupon errors."
 
     monkeypatch.setattr(public_query, "ensure_public_reviews", fake_ensure_public_reviews)
@@ -42,7 +43,7 @@ def test_answer_public_review_question_returns_no_evidence_for_weak_matches(monk
     async def fake_match_review_chunks(org_id, feature_id, query_embedding, match_count):
         return [{"chunk_text": "unrelated review text", "similarity": 0.05}]
 
-    async def fail_answer_from_review_context(question, context):
+    async def fail_answer_from_review_context(question, chunks):
         raise AssertionError("answer generation should not run without strong public evidence")
 
     monkeypatch.setattr(public_query, "ensure_public_reviews", fake_ensure_public_reviews)
@@ -95,10 +96,11 @@ def test_answer_public_review_question_uses_rating_lookup_without_embedding(monk
     async def fail_embed_texts(_texts):
         raise AssertionError("embedding should not run for rating questions")
 
-    async def fake_answer_from_review_context(question, context):
+    async def fake_answer_from_review_context(question, chunks):
         assert question == "What is the worst rating review?"
-        assert "Title: Public Demo Review: Error Messaging" in context
-        assert "Rating: 4/10" in context
+        assert isinstance(chunks, list)
+        assert any("Title: Public Demo Review: Error Messaging" in chunk for chunk in chunks)
+        assert any("Rating: 4/10" in chunk for chunk in chunks)
         return "The worst rated review is Error Messaging with a 4/10."
 
     monkeypatch.setattr(public_query, "ensure_public_reviews", fake_ensure_public_reviews)

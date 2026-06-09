@@ -1,6 +1,7 @@
 import logging
-import re
 from datetime import datetime, timezone
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from .openai_embeddings import embed_texts
 from .vector_store import (
@@ -14,144 +15,17 @@ from ..core.config import settings
 
 logger = logging.getLogger("app.review_ingestion")
 
-# Split reviews into intent-sized units before embedding instead of using one long character window.
-_SENTENCE_OR_CLAUSE_BOUNDARY = re.compile(
-    r"(?<=[.!?;])\s+|(?<=,)\s+(?=(?:and|but|because|so|while|though|however)\b)",
-    re.IGNORECASE,
-)
-_TOKEN = re.compile(r"[A-Za-z0-9][A-Za-z0-9'-]*")
-# Keep stored chunk text focused on searchable product signals; preserve negation words separately.
-_STOP_WORDS = {
-    "a",
-    "about",
-    "above",
-    "after",
-    "again",
-    "against",
-    "all",
-    "am",
-    "an",
-    "and",
-    "any",
-    "are",
-    "as",
-    "at",
-    "be",
-    "been",
-    "being",
-    "between",
-    "both",
-    "but",
-    "by",
-    "can",
-    "could",
-    "did",
-    "do",
-    "does",
-    "doing",
-    "down",
-    "during",
-    "each",
-    "few",
-    "for",
-    "from",
-    "had",
-    "has",
-    "have",
-    "having",
-    "he",
-    "her",
-    "here",
-    "hers",
-    "him",
-    "his",
-    "how",
-    "i",
-    "if",
-    "in",
-    "into",
-    "is",
-    "it",
-    "its",
-    "just",
-    "me",
-    "more",
-    "most",
-    "my",
-    "of",
-    "on",
-    "once",
-    "only",
-    "or",
-    "our",
-    "ours",
-    "out",
-    "over",
-    "own",
-    "really",
-    "same",
-    "she",
-    "should",
-    "so",
-    "some",
-    "such",
-    "than",
-    "that",
-    "the",
-    "their",
-    "theirs",
-    "them",
-    "then",
-    "there",
-    "these",
-    "they",
-    "this",
-    "those",
-    "through",
-    "to",
-    "too",
-    "under",
-    "until",
-    "up",
-    "very",
-    "was",
-    "we",
-    "were",
-    "what",
-    "when",
-    "where",
-    "which",
-    "while",
-    "who",
-    "whom",
-    "why",
-    "will",
-    "with",
-    "would",
-    "you",
-    "your",
-    "yours",
-}
-
-
-def _keyword_chunk(text: str) -> str:
-    tokens = _TOKEN.findall(text.lower())
-    keywords = [token for token in tokens if token not in _STOP_WORDS and len(token) > 1]
-    return " ".join(keywords)
-
 
 def _chunk_text(text: str) -> list[str]:
     clean = " ".join(text.split())
     if not clean:
         return []
 
-    chunks = []
-    for unit in _SENTENCE_OR_CLAUSE_BOUNDARY.split(clean):
-        chunk = _keyword_chunk(unit)
-        if chunk:
-            chunks.append(chunk)
-
-    return chunks or [_keyword_chunk(clean) or clean]
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=settings.chunk_size_chars,
+        chunk_overlap=settings.chunk_overlap_chars,
+    )
+    return [chunk.strip() for chunk in splitter.split_text(clean) if chunk.strip()]
 
 
 async def create_review_and_process(

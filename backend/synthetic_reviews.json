@@ -1,0 +1,505 @@
+{
+  "reviews": [
+    {
+      "id": "r001",
+      "reviewer_name": "Sarah K.",
+      "role": "Senior PM",
+      "company_size": "201-500",
+      "rating": 2,
+      "reviewed_at": "2026-03-14",
+      "title": "Promising but falls apart at scale",
+      "text": "We started using this about 8 months ago and honestly the first few weeks were great. But once we had more than like 3000 feedback items loaded in, everything slowed to a crawl. Opening a project takes forever now. Our engineers say it's a front-end rendering issue but support just tells us to clear our cache. Also the Jira sync is basically useless — we still have to export CSVs manually every single time someone updates a ticket status. For the price we're paying I expected better."
+    },
+    {
+      "id": "r002",
+      "reviewer_name": "Marcus T.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 4,
+      "reviewed_at": "2026-04-02",
+      "title": "Good for small teams, pricing gets weird at growth stage",
+      "text": "Really solid tool for where we were 6 months ago. The feedback clustering is genuinely useful and the roadmap view is clean. My main gripe is the pricing page — I literally didn't realize we were going to get charged per seat for collaborators until I hit checkout. Would have been nice to know that upfront. Also we got hit with an unexpected add-on fee for the API access tier. Not a dealbreaker but feels a bit sneaky."
+    },
+    {
+      "id": "r003",
+      "reviewer_name": "Priya N.",
+      "role": "Head of Product",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-02-28",
+      "title": "The admin experience needs work",
+      "text": "As the person who set this up for our org I can say the onboarding is rough. There's literally nothing on the screen after you create your first workspace. No checklist, no 'here's what to do next', nothing. I figured it out eventually but two of my PMs gave up and went back to Notion. I've asked support about an onboarding guide and they sent me a 40-page PDF which is not the same thing."
+    },
+    {
+      "id": "r004",
+      "reviewer_name": "James R.",
+      "role": "VP Product",
+      "company_size": "1000+",
+      "rating": 2,
+      "reviewed_at": "2026-05-10",
+      "title": "Enterprise needs not met",
+      "text": "We evaluated this for our enterprise rollout and had to pass. Two blockers: first, there's no audit log. We need to know who changed what permission and when — this is non-negotiable for our security team. Second, the role system is too blunt. We have contractors who need to comment on feedback but absolutely cannot see our billing data or unreleased roadmap items. There's no way to configure that level of granularity right now."
+    },
+    {
+      "id": "r005",
+      "reviewer_name": "Aisha M.",
+      "role": "Product Operations",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-01-19",
+      "title": "Notifications are out of control",
+      "text": "I love the product but my inbox is absolutely destroyed. Every single mention triggers a separate email. I have PMs tagging me in 20 reviews a day and I get 20 separate notifications. Please just bundle them by feature or by day. I've started ignoring all the emails which means I'm probably missing things. The actual product is great otherwise — the feedback tagging and synthesis is really good."
+    },
+    {
+      "id": "r006",
+      "reviewer_name": "Tom W.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 5,
+      "reviewed_at": "2026-04-22",
+      "title": "Best PM tool I've used in 10 years",
+      "text": "Switched from Productboard 6 months ago and haven't looked back. The AI synthesis of customer feedback is leagues ahead. Our weekly review sessions went from 2 hours to 45 minutes. The roadmap prioritization features are intuitive. Only minor thing is I wish the mobile experience was better — comment threads are really cramped on my phone and I can never find the save button when I'm on the go."
+    },
+    {
+      "id": "r007",
+      "reviewer_name": "Linda C.",
+      "role": "Customer Success Manager",
+      "company_size": "201-500",
+      "rating": 3,
+      "reviewed_at": "2026-03-05",
+      "title": "Finance team is annoyed at us",
+      "text": "Our finance team keeps asking for proper invoices and we keep having to tell them the tool doesn't support it. They need downloadable invoices with our PO number on them and proper tax line items broken out. We're a US company with European subsidiaries so the tax stuff is complicated. Right now we just get a generic receipt which our finance team won't accept for their records. This is blocking our renewal honestly."
+    },
+    {
+      "id": "r008",
+      "reviewer_name": "Dev P.",
+      "role": "Senior Product Manager",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-05-01",
+      "title": "Salesforce integration is half-baked",
+      "text": "The Jira integration works okay once you get it set up but the Salesforce integration needs serious work. Before you enable it for your whole team you really need to be able to preview the field mapping — right now you just flip a switch and hope for the best. We had a situation where the wrong fields were mapped and it took us two days to untangle the mess. A preview/dry run mode before enabling for all users would fix this."
+    },
+    {
+      "id": "r009",
+      "reviewer_name": "Rachel B.",
+      "role": "PM Lead",
+      "company_size": "11-50",
+      "rating": 2,
+      "reviewed_at": "2026-02-14",
+      "title": "Slow, slow, slow",
+      "text": "I really wanted to like this. The concept is great. But after we imported our historical review data from three different sources the search just lags constantly. Typing a query and waiting 4-5 seconds for results is not acceptable when you're in a meeting with stakeholders. Also loading projects with our full feedback history (we have about 5k items) takes so long that sometimes people just don't bother opening it."
+    },
+    {
+      "id": "r010",
+      "reviewer_name": "Carlos G.",
+      "role": "Product Director",
+      "company_size": "201-500",
+      "rating": 3,
+      "reviewed_at": "2026-04-17",
+      "title": "Dashboard reporting is lacking",
+      "text": "The charts look great in demos but when you actually try to do analysis they fall short. I want to be able to compare customer segments — like enterprise vs SMB feedback — side by side. The report builder makes this really difficult. You kind of have to build two separate reports and mentally compare them. Also I want to be able to schedule a weekly digest email of the dashboard to my stakeholders but that feature doesn't exist."
+    },
+    {
+      "id": "r011",
+      "reviewer_name": "Yuki S.",
+      "role": "Associate PM",
+      "company_size": "201-500",
+      "rating": 5,
+      "reviewed_at": "2026-03-28",
+      "title": "Changed how our team does triage",
+      "text": "Before this tool our triage process was a mess of Slack threads and Notion docs. Now everything lives in one place. The thing I love most is being able to leave inline comments and tag decisions directly on a review. Context stays attached where it belongs. Our team has gotten much faster at deciding what to act on."
+    },
+    {
+      "id": "r012",
+      "reviewer_name": "Ben A.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 1,
+      "reviewed_at": "2026-01-30",
+      "title": "Cancelled after 2 months",
+      "text": "The onboarding just broke us. Nobody on the team could figure out what to do after setting up the workspace. There's no guided flow, no tooltips that actually explain anything, nothing. I'm a fairly technical PM and even I spent 3 hours reading docs just to get the basic workflow running. For a less technical team this would be impossible. The product underneath might be good but you can't get to it."
+    },
+    {
+      "id": "r013",
+      "reviewer_name": "Fatima H.",
+      "role": "Chief Product Officer",
+      "company_size": "1000+",
+      "rating": 3,
+      "reviewed_at": "2026-05-20",
+      "title": "Good product, not enterprise ready",
+      "text": "We use this across 4 product teams and overall I'm happy with the synthesis quality. But we keep running into governance issues. No audit trail for permission changes is a real problem at our scale — we had an incident where someone inadvertently got access to a sensitive roadmap and we couldn't trace how it happened. Also need exportable dashboards so I can include them in board presentations without manually screenshotting everything."
+    },
+    {
+      "id": "r014",
+      "reviewer_name": "Mike D.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-02-09",
+      "title": "Mobile experience ruins otherwise great product",
+      "text": "Desktop experience is fantastic. Mobile is painful. The comment threads stack in a way that you lose context scrolling through them. And the save button is literally hidden below the keyboard on iPhone 13 — I've lost notes multiple times because I didn't realise I hadn't saved. I do a lot of my review work between meetings on my phone so this is a real issue for me personally."
+    },
+    {
+      "id": "r015",
+      "reviewer_name": "Natalie F.",
+      "role": "Product Operations Manager",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-04-08",
+      "title": "Almost perfect, pricing transparency is the issue",
+      "text": "We've been customers for over a year and I genuinely recommend this to people. One frustration though: when we were renewing I wanted to compare monthly vs annual pricing to build a business case for finance. That comparison is just not available on the pricing page — you have to talk to sales to get it. Our finance team wanted numbers before approving the conversation with sales, which created a weird chicken-and-egg situation."
+    },
+    {
+      "id": "r016",
+      "reviewer_name": "Omar K.",
+      "role": "Senior PM",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-03-22",
+      "title": "Jira sync is the biggest pain point",
+      "text": "Everything else works well enough but the Jira integration has been a source of constant frustration. Status changes in Jira don't sync back automatically — someone has to manually export a CSV and re-import it. We do this maybe twice a week and it's genuinely wasteful. The integration was one of the main reasons we chose this tool over competitors. Feeling a bit misled by the sales demo honestly."
+    },
+    {
+      "id": "r017",
+      "reviewer_name": "Sophie L.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 5,
+      "reviewed_at": "2026-05-15",
+      "title": "The collaboration features are underrated",
+      "text": "People focus on the AI features but honestly the collaboration stuff is what sold me. Being able to mention a teammate inline on a specific review and leave a decision note right there — that's huge. No more digging through Slack to find out why we deprioritized something 3 months ago. The decision trail is just there. Would love a digest notification option though instead of getting pinged for every single mention."
+    },
+    {
+      "id": "r018",
+      "reviewer_name": "Aaron Z.",
+      "role": "Director of Product",
+      "company_size": "201-500",
+      "rating": 2,
+      "reviewed_at": "2026-01-12",
+      "title": "Fell apart when we scaled our data",
+      "text": "First 3 months were great. Month 4 we imported bulk review history from our previous tool (Productboard) and everything changed. Search results take forever. The dashboard that used to load instantly now sits on a spinner for 10-15 seconds. Support has been responsive but hasn't actually fixed anything. We're evaluating alternatives now which is a shame because the core product concept is exactly what we needed."
+    },
+    {
+      "id": "r019",
+      "reviewer_name": "Emma P.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-04-29",
+      "title": "Billing is a mess for multi-entity companies",
+      "text": "If you're a single entity company the billing is fine. If you're like us — a UK entity billing a US parent — it's a nightmare. Our finance team needs invoices with proper tax breakdown and a PO number field. We've been manually editing the PDFs they send us which is ridiculous. This has been an open support ticket for 4 months. The product team clearly has more interesting things to work on."
+    },
+    {
+      "id": "r020",
+      "reviewer_name": "Leo R.",
+      "role": "Junior PM",
+      "company_size": "11-50",
+      "rating": 3,
+      "reviewed_at": "2026-02-22",
+      "title": "Setup took way longer than expected",
+      "text": "Maybe I'm not the target user but getting started was genuinely confusing. The empty state after creating a workspace gives you nothing to go on. I watched 3 YouTube tutorials before I understood the basic data model. Once I got it it clicked and I've been fairly happy since. But the first week was rough enough that I almost gave up. A proper getting started checklist — like invite your team, import your first reviews, set up your first workflow — would have saved me hours."
+    },
+    {
+      "id": "r021",
+      "reviewer_name": "Grace N.",
+      "role": "Head of Product",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-03-11",
+      "title": "Reporting is good but not great",
+      "text": "We use the dashboards every week in our leadership sync. The charts are genuinely useful and the team appreciates the visual. My frustration is that I can't export them in a way that works for board slides — I end up screenshotting everything. I also really want saved views so I can switch between my 'enterprise customer feedback' lens and 'SMB feedback' lens without rebuilding filters each time. Feels like 80% of the way there."
+    },
+    {
+      "id": "r022",
+      "reviewer_name": "Hassan M.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 5,
+      "reviewed_at": "2026-05-03",
+      "title": "Exactly what a PM tool should be",
+      "text": "I've used Productboard, Aha, and Coda for PM work and this blows all of them out of the water for feedback management specifically. The way it surfaces patterns across hundreds of reviews is genuinely magical. My one request would be better mobile support — I use it on my phone when I'm between meetings and it's not great. Threads are cramped and hard to interact with on a small screen."
+    },
+    {
+      "id": "r023",
+      "reviewer_name": "Claire B.",
+      "role": "Enterprise PM",
+      "company_size": "1000+",
+      "rating": 2,
+      "reviewed_at": "2026-01-25",
+      "title": "Security team rejected this",
+      "text": "Our security team did a vendor review and the lack of audit logging was a hard blocker. They specifically need to see permission changes by user with timestamps — who gave access to what and when. Without that we can't use this for any projects that touch customer data. I'm frustrated because the actual product functionality is great and our PMs loved the trial. Hopefully they add proper audit log support soon."
+    },
+    {
+      "id": "r024",
+      "reviewer_name": "Tyler H.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-04-14",
+      "title": "Good core, rough edges everywhere",
+      "text": "The core feedback synthesis is excellent. Everything around it needs work. Notifications are spammy — one ping per mention means I'm drowning in emails. The mobile app is barely functional. Billing gives our finance team headaches. And the Jira integration that was the main selling point still requires manual CSV exports for status updates. I keep waiting for a big quality-of-life update that hasn't come."
+    },
+    {
+      "id": "r025",
+      "reviewer_name": "Mia C.",
+      "role": "Product Operations",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-02-05",
+      "title": "Field PMs struggling with offline scenarios",
+      "text": "Our field PMs do a lot of customer visits where wifi is unreliable or nonexistent. They can't capture notes in the tool during calls because it won't load. We've resorted to voice memos and manual entry later which defeats the purpose. An offline mode for basic note capture would be transformative for our team. The desktop experience for those of us in the office is great though."
+    },
+    {
+      "id": "r026",
+      "reviewer_name": "Jason W.",
+      "role": "VP Product",
+      "company_size": "201-500",
+      "rating": 3,
+      "reviewed_at": "2026-03-30",
+      "title": "Great vision, execution gaps",
+      "text": "I want to love this product. The synthesis quality is genuinely impressive and the roadmap features are well thought out. But there are too many small things that add up — no audit logs, permission system that doesn't scale to enterprise, notifications that don't respect your time, dashboards you can't export properly. Each one feels like a prioritization miss. Hoping the roadmap catches up to the vision."
+    },
+    {
+      "id": "r027",
+      "reviewer_name": "Nina A.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 5,
+      "reviewed_at": "2026-05-07",
+      "title": "Transformed our weekly review process",
+      "text": "Our team was spending so much time manually reading through hundreds of support tickets and G2 reviews. This tool cut that to almost nothing. The clustering is smart and the summaries are accurate. Onboarding was a bit confusing at first — the empty workspace doesn't give you much direction — but once we figured it out it's been smooth sailing for 4 months."
+    },
+    {
+      "id": "r028",
+      "reviewer_name": "Paul S.",
+      "role": "Senior Product Manager",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-04-25",
+      "title": "The triage collaboration is the killer feature",
+      "text": "I've tried to get my team to review customer feedback together for years and it never stuck. Something about having inline mentions and decision notes attached to specific reviews made it click for everyone. Now when someone asks why we deprioritized something there's a paper trail right in the tool. Only downside is getting a separate notification for every single mention — need a digest mode badly."
+    },
+    {
+      "id": "r029",
+      "reviewer_name": "Isabel M.",
+      "role": "Product Manager",
+      "company_size": "201-500",
+      "rating": 2,
+      "reviewed_at": "2026-01-08",
+      "title": "Pricing gotchas killed the deal for us",
+      "text": "We were close to signing but the procurement process surfaced some issues. The pricing page doesn't show seat limits clearly — we only found out about the per-seat cap when we got to checkout and the price was significantly higher than the headline number. Finance also wanted a clear annual vs monthly comparison and there's no way to see that without contacting sales. We ended up going with a competitor that was more transparent."
+    },
+    {
+      "id": "r030",
+      "reviewer_name": "Ryan C.",
+      "role": "PM",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-03-18",
+      "title": "Mixed experience depending on team size",
+      "text": "Works great for our 3-person core product team. Started breaking down when we invited the wider product operations team (12 people). Performance got noticeably worse, notifications became unmanageable, and the basic role/permission setup doesn't give us enough control over who sees what. I think there's a real product-market fit for small product teams but they need to do work before they're ready for bigger orgs."
+    },
+    {
+      "id": "r031",
+      "reviewer_name": "Amy L.",
+      "role": "Head of Product Design",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-02-18",
+      "title": "As a designer the UX is mostly great",
+      "text": "The desktop interface is clean and well thought out. The mobile experience is where it falls down — I use it constantly on my commute and the comment threads are really cramped. Hard to read, hard to interact with. Also the save button placement on mobile doesn't follow standard iOS patterns which trips me up. Would love a mobile-first redesign or at least some UX improvements for smaller screens."
+    },
+    {
+      "id": "r032",
+      "reviewer_name": "Kevin O.",
+      "role": "Product Manager",
+      "company_size": "1000+",
+      "rating": 3,
+      "reviewed_at": "2026-05-12",
+      "title": "Permissions not ready for large orgs",
+      "text": "We have external consultants who need read access to some feedback but cannot under any circumstances see billing information or our unannounced roadmap. The current role system doesn't support this level of granularity. Our security team is also asking about audit logs — they need a record of every permission change by user and timestamp. These are table stakes for enterprise. Until they're addressed we're capped at using this for one team rather than rolling it out broadly."
+    },
+    {
+      "id": "r033",
+      "reviewer_name": "Diana K.",
+      "role": "Product Operations",
+      "company_size": "201-500",
+      "rating": 5,
+      "reviewed_at": "2026-04-11",
+      "title": "Honestly life-changing for our PM team",
+      "text": "I know that sounds hyperbolic but I mean it. We manage feedback from 6 different sources and before this tool it was a full-time job just to synthesize it all. Now I spend maybe 2 hours a week on it instead of 15. The collaboration features are excellent — being able to attach decisions to specific reviews means nothing gets lost. My only complaint is the notification volume. I need a way to batch them."
+    },
+    {
+      "id": "r034",
+      "reviewer_name": "Chris F.",
+      "role": "Senior PM",
+      "company_size": "51-200",
+      "rating": 2,
+      "reviewed_at": "2026-03-01",
+      "title": "Performance issues are a dealbreaker",
+      "text": "We have a decent-sized feedback corpus and the performance is just not there. Pages take ages to load. Search is laggy. The team has started using it less because it's quicker to just Ctrl+F a spreadsheet than wait for the search to return results. Support says they're working on it but we've been hearing that for 3 months. If you have less than 1000 feedback items it's probably fine. For us it's not."
+    },
+    {
+      "id": "r035",
+      "reviewer_name": "Tanya V.",
+      "role": "Chief Product Officer",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-01-22",
+      "title": "Strong product with billing blind spots",
+      "text": "Using this across two product teams and generally very happy. The AI synthesis saves us significant time. One operational issue: our finance team in Germany needs tax-compliant invoices with proper VAT breakdown and a place to enter our PO number. We've been manually requesting custom invoices from the account team each month which is inefficient for everyone. This should just be a self-serve option in billing settings."
+    },
+    {
+      "id": "r036",
+      "reviewer_name": "Nathan B.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 4,
+      "reviewed_at": "2026-04-20",
+      "title": "Jira users beware",
+      "text": "The native Jira integration is sold as a key feature but in practice you'll still be doing manual CSV exports for any status sync. We have a workflow where engineering updates ticket status in Jira and we need that reflected here automatically — it doesn't work that way. You have to export from Jira, import here, every time. Given that this is advertised as a core integration it's a bit misleading. The rest of the product is good though."
+    },
+    {
+      "id": "r037",
+      "reviewer_name": "Lucia P.",
+      "role": "PM Lead",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-02-11",
+      "title": "Dashboard sharing needs work",
+      "text": "The dashboards themselves are useful but sharing them outside the product is painful. I can't export to PDF in a way that looks good for presentations. There's no way to schedule automated delivery to stakeholders. And I can't save a filtered view so every time I open the dashboard I'm rebuilding my segment filters from scratch. These feel like obvious features that should exist already."
+    },
+    {
+      "id": "r038",
+      "reviewer_name": "Alex T.",
+      "role": "Product Manager",
+      "company_size": "201-500",
+      "rating": 5,
+      "reviewed_at": "2026-05-18",
+      "title": "Best decision we made last year",
+      "text": "We replaced a combination of Notion + spreadsheets + Slack with this single tool. The ROI has been clear. Onboarding took a bit of figuring out — we didn't really know what to do when we first set up our workspace — but once the team got going it's been excellent. The inline collaboration on reviews is genuinely how feedback management should work."
+    },
+    {
+      "id": "r039",
+      "reviewer_name": "Sandra H.",
+      "role": "Senior Product Manager",
+      "company_size": "201-500",
+      "rating": 3,
+      "reviewed_at": "2026-03-07",
+      "title": "Good tool that doesn't respect enterprise requirements",
+      "text": "The product team clearly designed this for smaller companies first. Permission granularity is limited — we needed contractors to have comment access without seeing roadmap or billing data and we couldn't configure that. Audit logging doesn't exist. Export formats for compliance reporting don't exist. These aren't nice-to-haves at our company size, they're requirements. We're using it for one team with lower compliance requirements while we wait for enterprise features."
+    },
+    {
+      "id": "r040",
+      "reviewer_name": "Felix M.",
+      "role": "PM",
+      "company_size": "51-200",
+      "rating": 4,
+      "reviewed_at": "2026-01-31",
+      "title": "The notification system needs a rethink",
+      "text": "I want to like getting notifications. I want to stay on top of my team's feedback activity. But right now every single mention or comment triggers an individual email and I'm getting 30-40 a day. I've turned off email notifications entirely which means I'm now out of the loop. A digest option — even just a daily summary grouped by feature — would let me turn them back on. This feels like an easy win that's somehow not been done yet."
+    },
+    {
+      "id": "r041",
+      "reviewer_name": "Ingrid S.",
+      "role": "Head of Product",
+      "company_size": "201-500",
+      "rating": 2,
+      "reviewed_at": "2026-04-03",
+      "title": "Almost lost a renewal over billing issues",
+      "text": "Our CFO nearly blocked our renewal because we couldn't produce proper invoices. We need PO numbers on invoices, tax ID fields, and a clear breakdown of what we're being charged for. The receipts we were getting didn't meet our internal procurement requirements. After 3 months of back and forth with account management they manually generated something we could use. This should not require human intervention."
+    },
+    {
+      "id": "r042",
+      "reviewer_name": "Boris N.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-02-25",
+      "title": "Offline use is completely broken",
+      "text": "I travel frequently for customer visits and reliable internet isn't always available. When I'm at a customer site and want to capture their feedback directly into the tool I often can't because it won't load on spotty connections. There's no offline mode, no draft sync, nothing. I've gone back to taking notes in Apple Notes and copying them in later. The tool is great when you're in the office but that's not where the most valuable feedback moments happen."
+    },
+    {
+      "id": "r043",
+      "reviewer_name": "Patricia K.",
+      "role": "VP Product",
+      "company_size": "1000+",
+      "rating": 3,
+      "reviewed_at": "2026-05-06",
+      "title": "Needs work before it's truly enterprise grade",
+      "text": "We've been using this for 8 months across two product areas. The synthesis quality is genuinely excellent and has changed how we do our monthly planning. But we keep bumping into the same ceiling: no audit logs, limited role customization, dashboards you can't schedule or export cleanly. Our CTO asked me last week if we could use this org-wide and the honest answer is not yet. When they fix these things it'll be a no-brainer."
+    },
+    {
+      "id": "r044",
+      "reviewer_name": "Marcus L.",
+      "role": "Product Manager",
+      "company_size": "11-50",
+      "rating": 4,
+      "reviewed_at": "2026-03-24",
+      "title": "Mobile app let down by key UX details",
+      "text": "Love the desktop product. The iOS app is frustrating. Comment threads are hard to read because they collapse in a way that loses context. The save button is in an awkward position that the keyboard covers when you're typing. I've lost maybe 4 or 5 drafts because I thought I saved and didn't. Would rather have a simpler mobile experience that's reliable than a complex one that loses my work."
+    },
+    {
+      "id": "r045",
+      "reviewer_name": "Wei Z.",
+      "role": "Senior PM",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-01-15",
+      "title": "Collaboration features changed our culture",
+      "text": "Before this we had a recurring problem where decisions got made in Slack and then nobody remembered why 2 months later. The ability to leave a decision note inline on a specific customer review has basically solved that. Everyone can see the context. My only gripes are the notification volume (please add digest mode) and the fact that on mobile the interface is too cramped to use comfortably."
+    },
+    {
+      "id": "r046",
+      "reviewer_name": "Hannah J.",
+      "role": "Product Operations Manager",
+      "company_size": "201-500",
+      "rating": 3,
+      "reviewed_at": "2026-04-16",
+      "title": "Onboarding needs a serious overhaul",
+      "text": "I've now onboarded 3 different teams onto this product. Every single time the first question is 'okay I've created my workspace, now what?' The empty state is completely unhelpful. There's no checklist, no quick start guide built into the product, no sample data to explore. The documentation is good but it's not the same as being guided through the product. I've started making my own onboarding checklist for new teams which I send before we kick off."
+    },
+    {
+      "id": "r047",
+      "reviewer_name": "Derek C.",
+      "role": "Product Manager",
+      "company_size": "51-200",
+      "rating": 5,
+      "reviewed_at": "2026-05-22",
+      "title": "Finally a PM tool that gets feedback management",
+      "text": "Every other tool I've tried treats feedback as an afterthought. This tool was clearly built by people who understand what PMs actually need. The clustering, the synthesis, the tagging — all excellent. The collaboration features especially have been a game changer. We now have a living record of every decision tied to actual customer evidence. That's priceless."
+    },
+    {
+      "id": "r048",
+      "reviewer_name": "Olivia R.",
+      "role": "Product Manager",
+      "company_size": "201-500",
+      "rating": 2,
+      "reviewed_at": "2026-02-02",
+      "title": "Performance degraded badly after data import",
+      "text": "Everything was fine until we did our historical data import. We brought in about 4 years of customer feedback from three tools — Intercom, Zendesk, and a legacy survey tool. After that the performance dropped off a cliff. Opening any project takes 30-45 seconds. The search feature times out half the time. We've reported it multiple times and support has escalated it but nothing has changed in 2 months. At this point we're questioning whether to stay."
+    },
+    {
+      "id": "r049",
+      "reviewer_name": "Patrick O.",
+      "role": "Senior PM",
+      "company_size": "51-200",
+      "rating": 3,
+      "reviewed_at": "2026-03-13",
+      "title": "Lots of potential, uneven execution",
+      "text": "The AI features are genuinely impressive and I say that as someone who's pretty skeptical of AI-washing in PM tools. The feedback synthesis is legit. But the product has some rough edges that add up — the Jira integration still needs manual CSV exports for status sync, the notification system hasn't been updated in what feels like forever, the mobile experience is behind the desktop by years. It's a product that's been built fast and it shows in places."
+    },
+    {
+      "id": "r050",
+      "reviewer_name": "Stephanie Y.",
+      "role": "Head of Product",
+      "company_size": "201-500",
+      "rating": 4,
+      "reviewed_at": "2026-05-25",
+      "title": "Strong product with a few annoying gaps",
+      "text": "After 14 months using this I can say the core product is excellent and we're not going anywhere. But the gaps are consistent: notification spam (every mention is a separate email — please add digest), mobile experience is cramped and buggy, and the Jira integration still requires manual CSV exports for anything status-related. These have been on the feedback list from day one. At some point the product team needs to address the quality-of-life stuff not just new features."
+    }
+  ]
+  
+}

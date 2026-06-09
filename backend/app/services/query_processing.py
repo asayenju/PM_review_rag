@@ -47,10 +47,10 @@ async def generate_feature_answer(
             limit=settings.query_match_count,
             rating_direction=rating_sort_direction(question),
         )
-        context = build_review_context(reviews)
-        if not context:
+        chunks = build_review_context(reviews)
+        if not chunks:
             return {"answer": _NO_EVIDENCE_ANSWER, "retrieved_chunk_ids": []}
-        answer = await answer_from_review_context(question=question, context=context, history=history)
+        answer = await answer_from_review_context(question=question, chunks=chunks, history=history)
         return {"answer": answer, "retrieved_chunk_ids": []}
 
     query_embedding = (await embed_texts([question]))[0]
@@ -65,15 +65,66 @@ async def generate_feature_answer(
         for match in matches
         if float(match.get("similarity") or 0) >= settings.query_min_similarity
     ]
-    context = build_chunk_context(strong_matches)
-    if not context:
+    chunks = build_chunk_context(strong_matches)
+    if not chunks:
         return {"answer": _NO_EVIDENCE_ANSWER, "retrieved_chunk_ids": []}
 
-    answer = await answer_from_review_context(question=question, context=context, history=history)
+    answer = await answer_from_review_context(question=question, chunks=chunks, history=history)
     return {
         "answer": answer,
         "retrieved_chunk_ids": [match["chunk_id"] for match in strong_matches if match.get("chunk_id")],
     }
+
+
+async def evaluate_feature_retrieval(org_id: str, feature_id: str, question: str, user: dict) -> dict:
+    profile_id = _user_profile_id(user)
+    if not profile_id:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Authenticated user is missing an id")
+
+    is_assigned = await has_feature_assignment(profile_id=profile_id, org_id=org_id, feature_id=feature_id)
+    if not is_assigned:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=_NO_ACCESS_DETAIL)
+
+    query_intent = classify_query(question)
+    if query_intent == OUT_OF_SCOPE:
+        return {"intent": query_intent, "matches": []}
+
+    if query_intent == REVIEW_RATING:
+        reviews = await list_reviews_for_feature(
+            org_id=org_id,
+            feature_id=feature_id,
+            limit=settings.query_match_count,
+            rating_direction=rating_sort_direction(question),
+        )
+        return {
+            "intent": query_intent,
+            "matches": [
+                {
+                    "chunk_id": None,
+                    "review_id": review.get("id"),
+                    "title": review.get("title"),
+                    "rating": review.get("rating"),
+                    "reviewer_name": review.get("reviewer_name"),
+                    "reviewed_at": review.get("reviewed_at"),
+                    "similarity": None,
+                }
+                for review in reviews
+            ],
+        }
+
+    query_embedding = (await embed_texts([question]))[0]
+    matches = await match_review_chunks(
+        org_id=org_id,
+        feature_id=feature_id,
+        query_embedding=query_embedding,
+        match_count=settings.query_match_count,
+    )
+    strong_matches = [
+        match
+        for match in matches
+        if float(match.get("similarity") or 0) >= settings.query_min_similarity
+    ]
+    return {"intent": query_intent, "matches": strong_matches}
 
 
 async def answer_feature_question(org_id: str, feature_id: str, question: str, user: dict) -> str:

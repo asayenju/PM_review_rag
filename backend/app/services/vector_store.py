@@ -1,5 +1,6 @@
 import json
 import math
+import asyncio
 from datetime import datetime, timezone
 
 import httpx
@@ -99,8 +100,19 @@ async def insert_chunks(chunks: list[dict]) -> None:
         row = dict(chunk)
         row["embedding"] = _vector_to_literal(chunk["embedding"])
         payload.append(row)
-    async with httpx.AsyncClient(timeout=30) as client:
-        response = await client.post(url, headers=headers, content=json.dumps(payload))
+    response = None
+    for attempt in range(3):
+        try:
+            async with httpx.AsyncClient(timeout=30) as client:
+                response = await client.post(url, headers=headers, content=json.dumps(payload))
+            if response.status_code < 500:
+                break
+        except httpx.HTTPError:
+            if attempt == 2:
+                raise
+        await asyncio.sleep(0.5 * (attempt + 1))
+    if response is None:
+        raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail="Chunk insert failed without a response")
     if response.status_code >= 400:
         raise HTTPException(status_code=status.HTTP_502_BAD_GATEWAY, detail=f"Chunk insert failed: {response.text}")
 

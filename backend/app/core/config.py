@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     openai_embedding_model: str = "text-embedding-3-small"
     openai_query_model: str = "gpt-4.1-mini"
     embedding_dimensions: int = 1536
-    query_match_count: int = 4
+    query_match_count: int = 8
     query_scan_limit: int = 200
     query_min_similarity: float = 0.25
     query_max_context_chars: int = 3000
