@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://127.0.0.1:4000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://pm-review-rag.onrender.com';
 
 export function getAuthToken() {
   if (typeof window === 'undefined') {
