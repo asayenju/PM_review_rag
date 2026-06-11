@@ -76,7 +76,7 @@ PUBLIC_REVIEW_FEATURE_SLUG=public-checkout-experience
 PUBLIC_REVIEW_FEATURE_NAME=Public Checkout Experience
 
 API_PORT=4000
-CORS_ORIGINS=http://localhost:3000
+CORS_ORIGINS=http://localhost:3000,https://pm-review-rag.vercel.app
 ```
 
 The defaults live in `backend/app/core/config.py`.
