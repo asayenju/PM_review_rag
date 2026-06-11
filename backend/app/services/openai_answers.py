@@ -11,7 +11,7 @@ def build_answer_input(question: str, chunks: list[str], history: str = "") -> s
 
     chunk_budget = settings.query_max_context_chars // max(len(chunks), 1)
     context_parts = [
-        f"[Source {i+1}]\n{chunk.strip()[:chunk_budget]}"
+        f"Context item {i+1}:\n{chunk.strip()[:chunk_budget]}"
         for i, chunk in enumerate(chunks)
     ]
     structured_context = "\n\n".join(context_parts)
@@ -33,8 +33,7 @@ async def answer_from_review_context(question: str, chunks: list[str], history: 
             "You answer product manager questions using only the supplied customer review context. "
             "Before forming your answer, consider all provided context chunks and synthesize insights across them. "
             "Be concise and specific, but ensure your answer reflects the full picture available in the context. "
-            "Every factual sentence that uses review evidence must include the relevant source label inline, "
-            "such as [Source 1]. Include at least one source citation in every evidence-backed answer. "
+            "Do not include source labels, citations, or bracketed source references in the final answer. "
             "If the question is outside the assigned feature, outside customer review feedback, asks for private data, "
             "or cannot be answered from the context, politely decline in one sentence."
         ),
